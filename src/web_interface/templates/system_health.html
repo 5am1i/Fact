@@ -20,7 +20,7 @@
 {% macro component_card(component) %}
     <div class="card m-2" style="width: 430px;">
         <div class="card-body">
-            <h5 class="card-title">{{ component }} status</h5>
+            <h5 class="card-title">{{ component }} 状态</h5>
             <h6 class="card-subtitle mb-2" id="{{ component }}-status">
                 unknown
             </h6>
@@ -123,7 +123,7 @@
     <div class="card m-2" style="width: 430px;">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center" style="width: 100%">
-                <h5 class="card-title">Currently analyzed firmware</h5>
+                <h5 class="card-title">当前分析的固件</h5>
                 <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#currentAnalysesLegend" style="margin-top: -15px; margin-right: -5px">
                     <i class="fa fa-question-circle" aria-hidden="true"></i>
                 </button>
@@ -141,26 +141,26 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-question-circle" aria-hidden="true"></i> Currently Analyzed Firmware</h5>
+                <h5 class="modal-title"><i class="fa fa-question-circle" aria-hidden="true"></i> 当前分析的固件</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="progress mt-2" style="height: 20px; padding-bottom: 0;">
-                    <div class="justify-content-center d-flex w-100">analyzed files / total files (elapsed time)</div>
+                    <div class="justify-content-center d-flex w-100">分析的文件/总文件（经过的时间）</div>
                 </div>
                 <div class="progress mt-2" style="height: 20px; padding-bottom: 0;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated text-center" role="progressbar" style="width: 40%">
-                        Analysis Progress
+                        分析进度
                     </div>
                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning text-center" role="progressbar" style="width: 40%">
-                        Unpacking Progress
+                        解包进度
                     </div>
                 </div>
                 <div class="progress mt-2" style="height: 20px;">
                     <div class="progress-bar progress-bar-striped bg-success text-center" role="progressbar" style="width: 100%">
-                        Finished Analysis
+                        完成分析
                     </div>
                 </div>
             </div>
@@ -172,7 +172,7 @@
 {% if analysis_plugin_info %}
     <div class="row justify-content-center my-3">
         <div style="width: 430px;" class="border-secondary border-top border-bottom align-middle">
-            <h5 class="d-flex justify-content-center mb-0 p-2">Analysis Plugins</h5>
+            <h5 class="d-flex justify-content-center mb-0 p-2">分析插件</h5>
         </div>
     </div>
     <div class="row justify-content-center">

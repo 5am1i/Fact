@@ -6,9 +6,9 @@
 
 {% block body %}
     <div class="alert alert-warning mt-4">
-      <strong>Error!</strong>  File not found in database: {{ uid|safe }}
+      <strong>Error!</strong>  在数据库中找不到文件： {{ uid|safe }}
     </div>
     <div class="alert alert-secondary">
-      <strong>Info!</strong> Analysis might still be pending... Please wait or <a href="javascript:location.reload()">reload</a> this page manually.
+      <strong>Info!</strong> 分析可能仍在等待中...请稍候或手动 <a href="javascript:location.reload()">重新加载</a> 此页面.
     </div>
 {% endblock %}

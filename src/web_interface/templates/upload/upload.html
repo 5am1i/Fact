@@ -24,7 +24,7 @@
         {%- if is_reanalysis %}
             <h3 class="mb-3">{{ title }} of {{ firmware.uid | replace_uid_with_hid }}</h3>
         {%- else %}
-            <h3 class="mb-3">Upload Firmware</h3>
+            <h3 class="mb-3">固件上传</h3>
         {%- endif %}
 
         <img id="map_img" src="{{ url_for('.static', filename='Pacman.gif') }}" style="display: none;"/>
@@ -39,7 +39,7 @@
 
                 {# File #}
                 {%- if not is_reanalysis %}
-                    {% call macros.upload_input("file", "File", error) %}
+                    {% call macros.upload_input("file", "文件", error) %}
                         <input class="form-control-file" id="file" type="file" name=file required>
                     {% endcall %}
                 {%- else %}
@@ -86,7 +86,7 @@
                 </script>
 
                 {# Device Class #}
-                {%- call macros.upload_input("device_class", "Device Class", error) %}
+                {%- call macros.upload_input("device_class", "设备类型", error) %}
                     <select class="form-control" id="device_class" name='device_class_dropdown' size="4" required
                             onchange="update_text_input(this, document.getElementById('class_text')); update_device_names();">
                     {%- if is_reanalysis %}
@@ -95,13 +95,13 @@
                     {%- for class in device_classes | sort %}
                         <option value='{{ class }}'>{{ class }}</option>
                     {%- endfor %}
-                        <option value='new entry'>new entry</option>
+                        <option value='new entry'>新建</option>
                     </select>
                     <input type="text" name="device_class" class="form-control" id="class_text" placeholder="New Device Class" style="display: none;">
                 {%- endcall %}
 
                 {# Vendor #}
-                {%- call macros.upload_input("vendor", "Vendor", error) %}
+                {%- call macros.upload_input("vendor", "供应商", error) %}
                     <select class="form-control" id="vendor" name='vendor_dropdown' size="4" required
                             onchange="update_text_input(this, document.getElementById('vendor_text')); update_device_names()">
                     {%- if is_reanalysis %}
@@ -110,13 +110,13 @@
                     {% for vendor in vendors | sort %}
                         <option value='{{ vendor }}'>{{ vendor }}</option>
                     {% endfor %}
-                        <option value='new entry'>new entry</option>
+                        <option value='new entry'>新建</option>
                     </select>
                     <input type="text" name="vendor" class="form-control" id="vendor_text" placeholder="New Vendor" style="display: none;">
                 {%- endcall %}
 
                 {# Device Name #}
-                {%- call macros.upload_input("device_name", "Device Name", error) %}
+                {%- call macros.upload_input("device_name", "设备名称", error) %}
                     <select
                             class="form-control"
                             id="device_name"
@@ -131,14 +131,14 @@
                             <option value='new entry'>Please select device class and vendor</option>
                         {% else %}
                             <option value='{{ firmware.device_name }}' selected>{{ firmware.device_name }}</option>
-                            <option value='new entry'>new entry</option>
+                            <option value='new entry'>新建</option>
                         {% endif %}
                     </select>
                     <input type="text" name="device_name" class="form-control" id="device_name_text" placeholder="New Device Name" style="display: none;">
                 {%- endcall %}
 
                 {# Device Part #}
-                {%- call macros.upload_input("device_part", "Device Part", error) %}
+                {%- call macros.upload_input("device_part", "固件类型", error) %}
                     <select
                             class="form-control"
                             id="device_part"
@@ -153,7 +153,7 @@
                             <option value='kernel'>kernel</option>
                             <option value='bootloader'>bootloader</option>
                             <option value='root-fs'>root-fs</option>
-                            <option value='new entry'>new entry</option>
+                            <option value='new entry'>新建</option>
                         {%- else %}
                             <option value='{{ firmware.part or "complete" }}' selected>{{ firmware.part or "complete" }}</option>
                         {%- endif %}
@@ -162,13 +162,13 @@
                 {%- endcall %}
 
                 {# Version #}
-                {%- call macros.upload_input("version", "Version", error) %}
+                {%- call macros.upload_input("version", "版本", error) %}
                     <input type="text" name="version" class="form-control" id="version" required
                            {%- if is_reanalysis %} value="{{ firmware.version }}" {% else %} placeholder="Version" {% endif -%}>
                 {%- endcall %}
 
                 {# Release Date #}
-                {%- call macros.upload_input("release_date", "Release Date", error, additional_classes='input-group') %}
+                {%- call macros.upload_input("release_date", "发布日期", error, additional_classes='input-group') %}
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                     </div>
@@ -185,17 +185,17 @@
                 {%- endcall %}
 
                 {# Tags #}
-                <label class="control-label" for="tags">Tags:</label>
+                <label class="control-label" for="tags">标签:</label>
                 <div class="form-group">
                     <div>
                         <input type="text" name="tags" class="form-control" id="tags"
                                {%- if is_reanalysis %} value="{{ ','.join(firmware.tags.keys()) }}"{% else %} placeholder="tags"{% endif %}>
-                        <span class="help-block">Optional: Comma separated list (e.g: flashdump,partial)</span>
+                        <span class="help-block">可选：逗号分隔列表（例如：flashdump，partial）</span>
                     </div>
                 </div>
 
                 {# Analysis Preset #}
-                <label class="control-label">Analysis Preset:</label>
+                <label class="control-label">分析预设:</label>
                 <div class="form-group">
                     {%- if not is_reanalysis %}
                         <script>
@@ -249,7 +249,7 @@
                     {%- if is_reanalysis %}
                         <i class="fas fa-redo-alt"></i> {{ title }}
                     {%- else %}
-                        <i class="fas fa-upload"></i> Submit
+                        <i class="fas fa-upload"></i> 提交
                     {%- endif %}
                 </button>
 

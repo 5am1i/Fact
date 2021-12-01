@@ -9,31 +9,31 @@
         </colgroup>
         <thead class="thead-light">
             <tr>
-                <th colspan=2> Showing Analysis: {{ selected_analysis | replace_underscore}}</th>
+                <th colspan=2> 分析展示: {{ selected_analysis | replace_underscore}}</th>
             </tr>
         </thead>
         <tbody class="table-analysis">
             {% if firmware.processed_analysis[selected_analysis]['skipped'] %}
             <tr>
-                <td class="table-warning">Analysis was skipped</td>
+                <td class="table-warning">分析被跳过</td>
                 <td>{{ firmware.processed_analysis[selected_analysis]['skipped'] }}</td>
             </tr>
             {% endif %}
             {% if firmware.processed_analysis[selected_analysis]['analysis_date'] %}
             <tr>
-                <td class="table-head-light">Time of Analysis</td>
+                <td class="table-head-light">分析时间</td>
                 <td>{{ firmware.processed_analysis[selected_analysis]['analysis_date'] | nice_unix_time }}</td>
             </tr>
             {% endif %}
             {% if firmware.processed_analysis[selected_analysis]['plugin_version'] %}
             <tr>
-                <td class="table-head-light">Plugin Version</td>
+                <td class="table-head-light">插件版本</td>
                 <td>{{ firmware.processed_analysis[selected_analysis]['plugin_version']}}</td>
             </tr>
             {% endif %}
             {% if firmware.processed_analysis[selected_analysis]['system_version'] %}
             <tr>
-                <td class="table-head-light">System Version</td>
+                <td class="table-head-light">系统版本</td>
                 <td>{{ firmware.processed_analysis[selected_analysis]['system_version']}}</td>
             </tr>
             {% endif %}

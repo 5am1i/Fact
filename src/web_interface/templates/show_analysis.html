@@ -42,29 +42,29 @@
         <div class="btn-toolbar mb-4" role="toolbar" aria-label="Analysis, download and admin buttons">
 
             <div class="btn-group mr-2 mb-2" role="group" aria-label="Download buttons">
-                <button class="btn btn-secondary">Download</button>
+                <button class="btn btn-secondary">下载</button>
 
-                {{ button_tooltip('Download raw file', 'bdown-button', '/download/', 'file-download') }}
+                {{ button_tooltip('下载原始文件', 'bdown-button', '/download/', 'file-download') }}
                 {% if firmware.files_included %}
-                    {{ button_tooltip('Download included files as tar.gz', 'tdown-button', '/tar-download/', 'file-archive') }}
+                    {{ button_tooltip('将包含的文件下载为 tar.gz', 'tdown-button', '/tar-download/', 'file-archive') }}
                 {% endif %}
                 {% if firmware.vendor %}
-                    {{ button_tooltip('Download report as PDF', 'pdown-button', '/pdf-download/', 'file-pdf') }}
+                    {{ button_tooltip('将报告下载为 PDF', 'pdown-button', '/pdf-download/', 'file-pdf') }}
                 {% endif %}
             </div>
 
             <div class="btn-group mr-2 mb-2" aria-label="Analysis buttons">
-                <button class="btn btn-secondary">Analysis</button>
+                <button class="btn btn-secondary">分析</button>
 
-                {{ button_tooltip('View in radare', 'radare-button', None, 'terminal', onclick='radare_view()') }}
+                {{ button_tooltip('在radare系统中查看（存在问题）', 'radare-button', None, 'terminal', onclick='radare_view()') }}
                 {% if not firmware.files_included %}
-                    {{ button_tooltip('Show dependency graph', 'graph-button', '/dependency-graph/', 'project-diagram', danger=False, disabled=True) }}
+                    {{ button_tooltip('显示依赖图', 'graph-button', '/dependency-graph/', 'project-diagram', danger=False, disabled=True) }}
                 {% else %}
-                    {{ button_tooltip('Show dependency graph', 'graph-button', '/dependency-graph/', 'project-diagram') }}
+                    {{ button_tooltip('显示依赖图', 'graph-button', '/dependency-graph/', 'project-diagram') }}
                 {% endif %}
                 {% if firmware.vendor %}
-                    {{ button_tooltip('Update analysis', 'update-button', '/update-analysis/', 'redo-alt') }}
-                    {{ button_tooltip('YARA search', 'yara-button', '/database/binary_search?firmware_uid=', 'search') }}
+                    {{ button_tooltip('更新分析', 'update-button', '/update-analysis/', 'redo-alt') }}
+                    {{ button_tooltip('YARA 搜索', 'yara-button', '/database/binary_search?firmware_uid=', 'search') }}
                 {% endif %}
             </div>
 
@@ -72,25 +72,25 @@
                 <div class="btn-group mr-2 mb-2" role="group" aria-label="Admin buttons">
                     <button class="btn btn-secondary">Admin</button>
 
-                    {{ button_collapse('redo-button', 'redo-alt', 'redo-button-div', 'Redo analysis') }}
+                    {{ button_collapse('redo-button', 'redo-alt', 'redo-button-div', '重新分析') }}
                     <span class="collapse" id="redo-button-div">
-                        {{ button_tooltip('Confirm removal of current results and comments', 'confirm-redo', '/admin/re-do_analysis/', 'check', danger=True) }}
+                        {{ button_tooltip('确认删除当前结果和评论', 'confirm-redo', '/admin/re-do_analysis/', 'check', danger=True) }}
                     </span>
 
                     <span class="collapse" id="delete-button-div">
-                        {{ button_tooltip('Confirm removal of results and comments', 'confirm-delete', '/admin/delete/', 'check', danger=True) }}
+                        {{ button_tooltip('确认删除结果和评论', 'confirm-delete', '/admin/delete/', 'check', danger=True) }}
                     </span>
-                    {{ button_collapse('delete-button', 'trash-alt', 'delete-button-div', 'Delete firmware') }}
+                    {{ button_collapse('delete-button', 'trash-alt', 'delete-button-div', '删除固件) }}
                 </div>
 
             {% endif %}
             <div class="btn-group d-flex align-items-start">
-                <div class="btn btn-secondary">Comparisons</div>
+                <div class="btn btn-secondary">对比</div>
                 {% if known_comparisons %}
                     {{ button_collapse('old-compare-button', 'hdd', 'known-comparisons', 'Show list of known comparisons') }}
                 {% endif %}
                 {% if not uids_for_comparison or uid not in uids_for_comparison %}
-                    <button id="add-compare" class="btn btn-outline-secondary" onclick="window.location.href = '/comparison/add/{{firmware.uid}}/{{root_uid}}'" data-toggle="tooltip" data-placement="bottom" title="Add to comparison">
+                    <button id="add-compare" class="btn btn-outline-secondary" onclick="window.location.href = '/comparison/add/{{firmware.uid}}/{{root_uid}}'" data-toggle="tooltip" data-placement="bottom" title="添加到比较">
                         <i class="fas fa-plus"></i>
                     </button>
                 {% endif %}
@@ -113,7 +113,7 @@
             </h3>
             {% if all_analyzed_flag %}
                 <div class="alert alert-warning">
-                    <strong>Warning!</strong> Not all included files are fully analyzed yet! Only analyzed files are shown.
+                    <strong>Warning!</strong> 尚未对所有包含的文件进行全面分析！ 仅显示分析的文件。
                 </div>
             {% endif %}
         </div>
@@ -132,7 +132,7 @@
 <div class="row justify-content-start mt-3 mb-2">
     <div class="col-auto collapse" id="known-comparisons">
         <div class="card float-right" style="width: auto; max-width: 650px;">
-            <div class="card-header text-center" style="font-size: larger">List of comparisons containing the displayed firmware</div>
+            <div class="card-header text-center" style="font-size: larger">包含所显示固件的比较列表</div>
             <div class="card-body">
                 {% for comparison in known_comparisons %}
                     <div class="col-xs-12 mb-1">
@@ -145,7 +145,7 @@
 
     <div class="collapse m-0" id="comparison-list">
         <div class="jumbotron float-right mx-2 mb-0 p-3" style="width: auto; max-width: 650px;">
-            <span class="mt-0 text-center" style="font-size: larger">Firmware Selected for Comparison</span>
+            <span class="mt-0 text-center" style="font-size: larger">选择用于比较的固件</span>
             <hr style="margin: 12px">
             <table>
                 <tr>
@@ -165,23 +165,23 @@
                         <td style="width: 180px; vertical-align: top;">
                             <div class="col-xs-12" style="padding: 2px;">
                                 <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='/comparison/remove_all/{{ uid }}/{{ root_uid }}'" style="width: 100%">
-                                    <i class="fas fa-ban"></i> Remove All
+                                    <i class="fas fa-ban"></i> 移除所有
                                 </button>
                             </div>
                             <div class="col-xs-12" style="padding: 2px;">
                                 <button type="button" id="start_compare_button" class="btn btn-secondary btn-sm" style="width: 100%">
-                                    <i class="fas fa-copy"></i> Compare
+                                    <i class="fas fa-copy"></i> 对比
                                 </button>
                             </div>
                             <div class="col-xs-12" style="padding: 2px;">
                                 <button type="button" id="start_text_file_compare_button" class="btn btn-secondary btn-sm" style="width: 100%">
-                                    <i class="fas fa-copy"></i> Compare text files
+                                    <i class="fas fa-copy"></i> 对比 text 文件
                                 </button>
                             </div>
                             <div class="form-group col-xs-12 m-0">
                                 <div class="checkbox m-0" style="margin-left: 30px; text-align: center">
                                     <label style="padding: 2px">
-                                        <input type="checkbox" value="true" id="recompare_checkbox" style="margin-top: 2px;"> Force Recompare
+                                        <input type="checkbox" value="true" id="recompare_checkbox" style="margin-top: 2px;"> 强制重新比较
                                     </label>
                                 </div>
                             </div>
@@ -214,7 +214,7 @@
             <table class="table table-sm">
                 <thead>
                     <tr class="thead-light">
-                        <th>File Tree</th>
+                        <th>文件树</th>
                     </tr>
                 </thead>
                 <tbody style="font-size: 14px;">
@@ -251,7 +251,7 @@
             <table class="table table-sm table-hover">
                 <thead class="thead-light">
                     <tr>
-                        <th>Analysis Results</th>
+                        <th>分析结果</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -264,7 +264,7 @@
                     {% endfor %}
                     <tr>
                         <td class="table-head-light clickable" data-toggle="modal" data-target="#add_single_file_analysis_modal">
-                            <i class="fas fa-play-circle"></i> Run additional analysis
+                            <i class="fas fa-play-circle"></i> 运行附加分析
                         </td>
                     </tr>
                 </tbody>
@@ -277,20 +277,20 @@
                 <div class="modal-content">
 
                     <div class="modal-header d-flex justify-content-between align-items-center">
-                        <h5 class="modal-title">Add analysis to file</h5>
+                        <h5 class="modal-title">将分析添加到文件</h5>
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
                     </div>
 
                     <div class="modal-body">
                         <form class="form-horizontal" action="" method=post enctype=multipart/form-data>
-                            <p>Add new analysis</p>
+                            <p>添加新分析</p>
                             {% for system in available_plugins.unused | sort %}
                                 <label class="checkbox-inline" data-toggle="tooltip" title="{{ analysis_plugin_dict[system][0] | safe }}" style="display: block">
                                     <input type=checkbox name="analysis_systems" value="{{ system }}" unchecked>&nbsp;{{ system | replace_underscore }}<br />
                                 </label>
                             {% endfor %}
                             <hr />
-                            <p>Update analysis</p>
+                            <p>更新分析</p>
                             {% for system in available_plugins.used | sort %}
                                 <label class="checkbox-inline" data-toggle="tooltip" title="{{ analysis_plugin_dict[system][0] | safe }}" style="display: block">
                                     <input type=checkbox name="analysis_systems" value="{{ system }}" unchecked>&nbsp;{{ system | replace_underscore }}<br />
@@ -298,10 +298,10 @@
                             {% endfor %}
                             <hr />
                             <label class="checkbox-inline" data-toggle="tooltip" title="disable smart analysis skipping" style="display: block;">
-                                <input type=checkbox name="force_update" value="true" unchecked>&nbsp;force analysis update<br />
+                                <input type=checkbox name="force_update" value="true" unchecked>&nbsp;强制更新分析<br />
                             </label>
                             <button class="btn btn-primary" type="submit" id="add_single_file_analysis" value=submit>
-                                <i class="fas fa-play-circle"></i> Add
+                                <i class="fas fa-play-circle"></i> 新增
                             </button>
                         </form>
                     </div>
@@ -322,7 +322,7 @@
                     <div id="summary-div">
                         <div id="loading-summary-gif" style="display: block; border: 1px solid #dddddd; padding: 5px; text-align: center">
                             <img src="{{ url_for("static", filename = "Pacman.gif") }}" alt="loading gif">
-                            <p>Generating summary of included files...</p>
+                            <p>正在生成包含文件的摘要...</p>
                         </div>
                     </div>
                     <script>
@@ -347,7 +347,7 @@
             <div class="col-lg-12">
                 <div class="list-group">
                     <button id="preview_button" data-toggle="collapse" data-target="#preview-div" class="list-group-item list-group-item-primary">
-                        Show Preview
+                        显示预览
                     </button>
                     <div id="preview-div" class="collapse border rounded-bottom p-3">
                         <div class="form-row" id="hex-preview-form" style="display: none;">
